@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="sik">
+<!-- 
+<select id="u_sik" parameterType="String" resultType="sik">
+	select  * from u_sik where p_id=#{p_id} order by u_time desc
+</select>
+
+<select id="getSnum" parameterType="String" resultType="sik">
+	select  s_num from sik where p_id=#{p_id}
+</select>
+
+<update id="updateSik" parameterType="sik">
+	update sik set s_num=s_num+#{s_num} where p_id=#{p_id}
+</update>
+ -->
+ <!-- 식권 사용 정보 추가하기 -->
+<insert id="u_sikInsert" parameterType="sik">
+	insert into u_sik values(#{p_id},#{r_name},now(), 1)
+</insert>
+<!-- 
+<select id="getPersonU_SikList" parameterType="String" resultType="TreeMap">
+	select (DATE_FORMAT(u_time, '%Y-%m-%d'))date, count(*) from u_sik 
+	where p_id=#{p_id} GROUP BY DATE_FORMAT(u_time, '%Y-%m-%d') ORDER BY date desc
+</select>
+ -->
+ <!-- 해당 개인회원의 식권인증번호가 맞을 때, 식권 개수 반환 -->
+<select id="usesik" parameterType="sik" resultType="sik">
+	select s_num from sik where p_id=#{p_id} and p_siknum=#{p_siknum}
+</select>
+
+<!-- 식권 개수에서 한 장 빼기 -->
+<update id="sikUpdate" parameterType="sik">
+	update sik set s_num=(s_num-1) where p_id=#{p_id} and p_siknum=#{p_siknum}
+</update>
+
+<!-- 해당 날짜에 해당 식당에서 사용된 식권 개수 구하기 -->
+<select id="getRestU_SikList" parameterType="Map" resultType="java.util.TreeMap">
+	select (DATE_FORMAT(u_time, '%Y-%m-%d'))date, sum(s_num) from u_sik 
+	where r_name=#{r_name} GROUP BY DATE_FORMAT(u_time, '%Y-%m-%d') ORDER BY date desc limit #{pageRow}, #{pageSize}
+</select>
+
+<!-- 해당 식당의 식권 매출 내역 목록 크기 구하기 -->
+<select id="getRestU_SikCount" parameterType="String" resultType="Integer">
+	SELECT count(1) as NumRows from (select (DATE_FORMAT(u_time, '%Y-%m-%d'))date from u_sik 
+	where r_name=#{r_name} GROUP BY DATE_FORMAT(u_time, '%Y-%m-%d'))t
+</select>
+
+</mapper>
+
+
+
+
+
+
+

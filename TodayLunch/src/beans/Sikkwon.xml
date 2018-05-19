@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sikkwon">
+
+	<select id="usik" resultType="sikkwon" parameterType="sikkwon">
+		select * from u_sik where p_id=#{p_id} order by u_time desc
+	</select>
+	
+	<!--식권 개수 (sik)-->
+	<select id="getSnum" resultType="int" parameterType="String">
+		select s_num from sik where p_id=#{p_id}
+	</select>
+	
+	<!--충전 개수(u_sik)-->
+	<insert id="addSnum" parameterType="sikkwon">
+		insert into u_sik (p_id,r_name,u_time,s_num) 
+		values(#{p_id},'admin',now(),#{s_num}*-1)
+	</insert>
+	
+	<!--sik 테이블에 식권 충전 (sik)-->
+	<update id="updateSik" parameterType="sikkwon">
+		update sik set s_num=s_num+#{s_num} where p_id=#{p_id}
+	</update>
+	
+	<!--총 레코드 개수(u_sik)-->
+	<select id="getArticleCount" parameterType="String" resultType="int">
+		select count(*) from u_sik where p_id=#{p_id}
+	</select>
+	
+	<!--가져오기-->
+	<select id="useList" parameterType="Map" resultType="sikkwon">
+		select * from u_sik where p_id=#{p_id} order by u_time desc limit #{startRow},#{pageSize}
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+

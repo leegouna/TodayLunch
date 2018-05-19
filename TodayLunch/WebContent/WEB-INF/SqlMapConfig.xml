@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ "HTTP://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<typeAliases>
+		<typeAlias type="beans.MemberDTO" alias="member" />
+		<typeAlias type="beans.SikkwonDTO" alias="sikkwon" />
+		<typeAlias type="beans.HistoryDTO" alias="history" />
+		<typeAlias type="beans.RestCommand" alias="rest" />
+		<typeAlias type="beans.MenuDTO" alias="menu" />
+		<typeAlias type="beans.SikCommand" alias="sik" />
+		<typeAlias type="beans.BookmarkDTO" alias="bm" />
+		<!-- 회원가입 위한 테이블정보 를 정의(별칭부여) -->
+		<typeAlias type="beans.MemberCommand" alias="memdto" />
+		<typeAlias type="beans.AdminDTO" alias="AdminDTO"/>
+		<typeAlias type="beans.ReviewCommand"  alias="review"/>
+	</typeAliases>
+
+	<mappers>
+		<mapper resource="beans/ForgetInfo.xml" />
+		<mapper resource="beans/Member.xml" />
+		<mapper resource="beans/Sikkwon.xml" />
+		<mapper resource="beans/History.xml" />
+		<mapper resource="action/rest/Rest.xml" />
+		<mapper resource="action/rest/Menu.xml" />
+		<mapper resource="action/rest/Sik.xml" />
+		<mapper resource="action/person/Bookmark.xml" />
+		<!-- 회원가입 위한 테이블과 매핑할 xml파일을 정의(sql구문<->DB테이블 연결) -->
+		<mapper resource="action/register/Register.xml" />
+		<mapper resource="action/admin/Admin.xml" />
+		<mapper resource="action/review/Review.xml"/>
+	</mappers>
+
+</configuration>
+
+ 
+ 
+ 

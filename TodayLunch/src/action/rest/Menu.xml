@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="menu">
+
+<!-- 해당 식당의 해당 날짜에 등록된 메뉴 가져오기 -->
+	<select id="getMenu" parameterType="menu" resultType="menu">
+		select * from menu where r_name=#{r_name} and m_time=#{m_time}
+	</select>
+
+<!-- 식당 이름이나 메뉴 중에 검색어와 일치하는 항목 가져오기 -->
+	<select id="searchMenuList" parameterType="Map" resultType="menu">
+		<!-- Oracle -->
+		<!-- select * from menu where (r_name like '%'||#{searchWord}||'%' or 
+		m_content like '%'||#{searchWord}||'%') and m_time=#{m_time} -->
+		<!-- MySQL -->
+		select * from menu where (r_name like CONCAT('%',#{searchWord},'%') or 
+		m_content like CONCAT('%',#{searchWord},'%')) and m_time=#{m_time}
+	</select>
+
+<!-- 해당 날짜의 모든 메뉴 가져오기 -->
+	<select id="getAllMenu" parameterType="Date" resultType="menu">
+		select * from menu where m_time=#{m_time}
+	</select>
+
+<!-- 해당 날짜의 메뉴가 있는지 확인하기(있을 경우 true 반환) -->
+	<select id="isMenu" parameterType="menu" resultType="boolean">
+		SELECT EXISTS(select * from menu where r_name=#{r_name} and
+		m_time=#{m_time})
+	</select>
+
+<!-- 메뉴 수정하기 -->
+	<update id="updateMenu" parameterType="menu">
+		update menu set m_time=#{m_time}, m_content=#{m_content} where
+		r_name=#{r_name} and m_time=#{m_time}
+	</update>
+
+<!-- 메뉴 삽입하기 -->
+	<insert id="insertMenu" parameterType="menu">
+		insert into menu value(#{r_name}, #{m_time}, #{m_content})
+	</insert>
+
+
+</mapper>
+
+
+
+
+
+
+

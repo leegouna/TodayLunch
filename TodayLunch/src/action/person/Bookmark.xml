@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="bm">
+
+<!-- 해당 식당이 해당 개인회원의 즐겨찾기에 추가되어 있는가(추가 되어 있다면 true 반환) -->
+<select id="isBookmarked" parameterType="bm" resultType="boolean">
+	select exists(select * from bookmark where p_id=#{p_id} and r_id=#{r_id})
+</select>
+
+<!-- 해당 개인회원의 즐겨찾기 목록(식당 이름) 받아오기 -->
+<select id="getBookmarkList" parameterType="String" resultType="String">
+	select r_id from bookmark where p_id=#{p_id}
+</select>
+
+<!-- 해당 개인회원의 즐겨찾기 목록 크기 받아오기 -->
+<select id="getBookmarkCount" parameterType="String" resultType="Integer">
+	select count(*) from bookmark where p_id=#{p_id}
+</select>
+
+<!-- 해당 개인회원이 즐겨찾기한 식당 한 곳 삭제하기(삭제 성공시 true 반환) -->
+<delete id="deleteBookmark" parameterType="bm">
+	delete from bookmark where p_id=#{p_id} and r_id=#{r_id}
+</delete>
+
+<!-- 해당 개인회원의 즐겨찾기에 식당 한 곳 추가하기(추가 성공시 true 반환) -->
+<insert id="insertBookmark" parameterType="bm">
+	insert into bookmark values(#{p_id}, #{r_id})
+</insert>
+
+</mapper>
+
+
+
+
+
+
+

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="memdto">
+ 
+ <!-- 개인회원 중복아이디체크-->
+ <select id="checkID" parameterType="String"  resultType="boolean" >
+  select exists( select * from login where id=#{id})
+ </select>
+ 
+  <!-- 식당이름 중복체크-->
+ <select id="checkRes" parameterType="String"  resultType="boolean" >
+  select exists( select * from rest_info where r_name=#{r_name})
+ </select>
+
+ <!--2.개인회원 가입-->
+ <insert id="Insert1" parameterType="memdto">
+  insert into person (p_id,p_passwd,p_email,p_name,p_check,p_siknum)
+  				 values(#{p_id},#{p_passwd},#{p_email},#{p_name},0,#{p_siknum})
+ </insert>
+ 
+ <!-- person테이블에도 개인회원정보를 넣어준다 -->
+  <insert id="Insert2" parameterType="memdto">
+  insert into login (id,passwd,grade)
+  				 values(#{p_id},#{p_passwd},3)
+ </insert>
+ 
+  <!-- sik테이블에도 개인회원정보를 넣어준다 -->
+  <insert id="Insert3" parameterType="memdto">
+  insert into sik (p_id,p_siknum,s_num)
+  				 values(#{p_id},#{p_siknum},0)
+ </insert>
+ 
+  <!--3.식당회원 가입-->
+ <insert id="Insert4" parameterType="memdto">
+  insert into rest (r_id,r_passwd,r_email,r_phone) values(#{r_id},#{r_passwd},#{r_email},#{r_phone})
+ </insert>
+ 
+  <!-- login테이블에도 식당회원정보를 넣어준다 -->
+  <insert id="Insert5" parameterType="memdto">
+  insert into login (id,passwd,grade) values(#{r_id},#{r_passwd},2)
+   </insert>
+   
+   <!-- rest_info테이블에도 식당회원정보를 넣어준다 -->
+   <insert id="Insert6" parameterType="memdto">
+  insert into rest_info (r_id,r_wi,r_gy,r_add,r_name,r_info) values(#{r_id},#{r_wi},#{r_gy},#{r_add},#{r_name},#{r_info})
+ </insert>
+
+</mapper>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<!--(4~5) viewResolver(위치,이동할 페이지의 확장자를 지정) -->
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+		<property name="prefix" value="/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+	<!-- 파일 업로드 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="10485760" />
+		<property name="defaultEncoding" value="UTF-8" />
+	</bean>
+
+	<!-- 예외가 발생이 되었을때 처리해주는 예외페이지를 지정 -->
+	<!-- <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver"> 
+		<property name="exceptionMappings"> <props> <prop key="java.lang.Exception">errorPage</prop> 
+		</props> </property> </bean> -->
+
+
+
+	<!--(2) 컨트롤러이름을 알려주는 HanderMapping등록 -->
+	<context:annotation-config />
+	<mvc:annotation-driven />
+
+	<bean id="AdminDAO" class="beans.SqlMapAdminDao">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+
+
+	<bean id="memberDAO" class="beans.SqlMapMemberDao">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+
+	<bean id="sikkwonDAO" class="beans.SqlMapSikkwonDao">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean>
+
+	<bean id="forgetInfoDAO" class="beans.SqlMapForgetInfoDao">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean>
+
+	<bean id="HistoryDAO" class="beans.SqlMapHistoryDao">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean>
+
+	<bean id="menuDAO" class="beans.SqlMapMenuDao">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+
+	<bean id="restDAO" class="beans.SqlMapRestDao">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+
+	<bean id="sikDAO" class="beans.SqlMapSikDao">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+
+	<bean id="bmDAO" class="beans.SqlMapBookmarkDao">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+
+	<bean class="beans.SqlMapReviewDao" id="reviewDAO">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+
+	<!-- 메인&검색 -->
+	<bean class="action.MainController" />
+	<bean class="action.SearchResultController" />
+
+	<!-- 식당 마이페이지 -->
+	<bean name="/Mypage_r/myPage.lunch"
+		class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName" value="Mypage_r/myPage"></property>
+	</bean>
+	<bean class="action.rest.UpdateInfoController" />
+	<bean class="action.rest.UpdateInfoProController" />
+	<bean class="action.rest.UpdateMenuController" />
+	<bean class="action.rest.UpdateMenuProController" />
+	<bean class="action.rest.SikInfoController" />
+	<bean class="action.rest.UseSikController" />
+	<bean class="action.rest.DeleteRestController" />
+
+	<!-- 전체 식당 목록 -->
+	<bean class="action.rest.RestListController" />
+
+	<!-- 식당 소개 페이지, 리뷰 -->
+	<bean class="action.rest.ShowRestController" />
+	<bean class="action.review.ReviewWriteController" />
+	<bean class="action.review.ReviewWriteProController" />
+	<bean class="action.review.ReviewUpdateController" />
+	<!-- <bean class="action.review.ReviewUpdateProController" /> -->
+	<bean class="action.review.ReviewDeleteProController" />
+
+	<!-- 즐겨찾기 -->
+	<bean class="action.person.BookmarkListController" />
+
+	<!--Login Action -->
+	<bean name="/Login/login.lunch" class="action.login.LoginActionController" />
+	<bean name=" /Login/loginPro.lunch" class="action.login.LoginProActionController" />
+	<bean name="/Login/logout.lunch" class="action.login.LogOutActionController" />
+	<bean name="/Login/forget_Info.lunch" class="action.login.ForgetInfoActionController" />
+
+	<!--Person Action -->
+	<bean name="/Mypage_p/buySik.lunch" class="action.person.BuySikActionController" />
+	<bean name="/Mypage_p/buySikPro.lunch" class="action.person.BuySikProActionController" />
+	<bean name="/Mypage_p/deletePerson.lunch" class="action.person.DeletePersonActionController" />
+	<bean name="/Mypage_p/myPage.lunch" class="action.person.MyPageActionController" />
+	<bean name="/Mypage_p/sikInfo.lunch" class="action.person.SikInfoActionController" />
+	<bean name="/Mypage_p/updateInfo.lunch" class="action.person.UpdateInfoActionController" />
+	<bean name="/Mypage_p/updateInfoPro.lunch" class="action.person.UpdateInfoProActionController" />
+
+	<!--3.요청에 따라서 처리해주는 컨트롤러 만들어서 처리(등록)//회원가입 -->
+	<bean name="/register.lunch" class="action.controller.RegisterActionController" />
+	<bean name="/register2.lunch" class="action.controller.RegisterActionController2" />
+	<bean name="/Register/registerintro.lunch"
+		class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName" value="Register/registerintro"></property>
+	</bean>
+
+	<bean class="action.admin.AdminMyPageController" />
+	<bean class="action.admin.AdminNoticeController" />
+	<bean class="action.admin.GetPeopleController" />
+	<bean class="action.admin.GetSikinfoController" />
+
+	<bean id="viewResolver2"
+		class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<property name="order" value="0"></property>
+	</bean>
+	<bean
+		class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"
+		id="jsonView">
+		<property name="contentType" value="application/json" />
+	</bean>
+
+</beans>
+
+
+
+
+

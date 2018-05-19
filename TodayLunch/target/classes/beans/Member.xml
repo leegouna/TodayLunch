@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="member">
+
+<!--login-->
+<select id="login" resultType="boolean" parameterType="Map">
+	SELECT EXISTS(select id,passwd from login where id=#{p_id} and passwd=#{p_passwd})
+</select>
+
+<!--grade-->
+<select id="grade" resultType="int" parameterType="String">
+	select grade from login where id=#{p_id}
+</select>
+
+<!--personal information-->
+<select id="p_info" resultType="member" parameterType="String">
+	select * from person where p_id=#{p_id}
+</select>
+
+<!--update personal info-->
+<update id="p_update"  parameterType="member">
+	update person set p_passwd=#{p_passwd}, p_name=#{p_name},
+	p_email=#{p_email}, p_siknum=#{p_siknum} where p_id=#{p_id}
+</update>
+
+<!--search password before delete-->
+<select id="searchpw" resultType="boolean" parameterType="member">
+	SELECT EXISTS(select p_passwd from person where p_id=#{p_id} and p_passwd=#{p_passwd} )
+</select>
+
+<delete id="p_delete" parameterType="member">
+	delete from person where p_id=#{p_id}
+</delete>
+
+<delete id="lo_delete" parameterType="member">
+	delete from login where id=#{p_id}
+</delete>
+
+<delete id="sikdelete" parameterType="member">
+	delete from sik where p_id=#{p_id}
+</delete>
+
+<delete id="u_sikdelete" parameterType="member">
+	delete from u_sik where p_id=#{p_id}
+</delete>
+
+<delete id="bmdelete" parameterType="member">
+	delete from bookmark where p_id=#{p_id}
+</delete>
+
+
+</mapper>
+
+
+
+
+

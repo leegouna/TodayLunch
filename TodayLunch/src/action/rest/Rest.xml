@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="rest">
+
+	<!-- 식당 이름으로 식당 아이디 얻기 -->
+	<select id="getR_id" parameterType="String" resultType="String">
+		select r_id from rest_info where r_name=#{delete_r}
+	</select>
+
+	<!-- 식당 아이디로 식당 이름 얻기 -->
+	<select id="getR_name" parameterType="String" resultType="String">
+		select r_name from rest_info where r_id=#{r_id}
+	</select>
+
+	<!-- 식당 아이디로 rest 정보 얻기 -->
+	<select id="getRest" parameterType="String" resultType="rest">
+		select * from rest where r_id=#{r_id}
+	</select>
+
+	<!-- 식당 아이디로 rest_info 정보 얻기 -->
+	<select id="getRest_Info" parameterType="String" resultType="rest">
+		select * from rest_info where r_id=#{r_id}
+	</select>
+
+	<!-- 식당 정보로 rest 수정하기 -->
+	<update id="updateRest" parameterType="rest">
+		update rest set r_passwd=#{r_passwd}, r_email=#{r_email}, r_phone=#{r_phone}
+		where r_id=#{r_id}
+	</update>
+
+	<!-- 식당 정보로 rest_info 수정하기 -->
+	<update id="updateRest_info" parameterType="rest">
+		update rest_info set r_wi=#{r_wi}, r_gy=#{r_gy}, r_add=#{r_add},
+		r_name=#{r_name},
+		r_info=#{r_info}, r_img0=#{r_img0}, r_img1=#{r_img1}, r_img2=#{r_img2} where
+		r_id=#{r_id}
+	</update>
+	
+	<!-- 식당 정보로 login 수정하기 -->
+	<update id="updateRest_login" parameterType="rest">
+		update login set passwd=#{r_passwd} where id=#{r_id}
+	</update>
+	
+	<!-- 식당 정보로 menu 수정하기 -->
+	<update id="updateRest_menu" parameterType="Map">
+		update menu set r_name=#{r_name_change} where r_name=#{r_name_origin}
+	</update>
+	
+	<!-- 식당 정보로 review 수정하기 -->
+	<update id="updateRest_review" parameterType="Map">
+		update review set r_name=#{r_name_change} where r_name=#{r_name_origin}
+	</update>
+	
+	<!-- 식당 정보로 menu 수정하기 -->
+	<update id="updateRest_u_sik" parameterType="Map">
+		update u_sik set r_name=#{r_name_change} where r_name=#{r_name_origin}
+	</update>
+
+	<!-- 모든 식당 개수 구하기 -->
+	<select id="getAllRestCount" resultType="int">
+		select count(*) from rest_info
+	</select>
+
+	<!-- 모든 식당 이름/소개문 얻기 -->
+	<select id="getAllRest" parameterType="Map" resultType="rest">
+		select r_name, r_info, r_img0, r_img1, r_img2 from rest_info limit
+		#{pageRow}, #{pageSize}
+	</select>
+
+	<!-- 식당회원 rest에서 삭제하기 -->
+	<delete id="deleteRest" parameterType="rest">
+		delete from rest where r_id=#{r_id} and r_passwd=#{r_passwd}
+	</delete>
+
+	<!-- 식당회원 rest_info에서 삭제하기 -->
+	<delete id="deleteRest_info" parameterType="rest">
+		delete from rest_info where r_id=#{r_id}
+	</delete>
+
+	<!-- 식당 회원 login에서 삭제하기 -->
+	<delete id="deleteRest_login" parameterType="rest">
+		delete from login where id=#{r_id}
+	</delete>
+	
+	<!-- 식당회원 bookmark에서 삭제하기 -->
+	<delete id="deleteRest_bookmark" parameterType="rest">
+		delete from bookmark where r_id=#{r_id}
+	</delete>
+	
+	<!-- 식당회원 menu에서 삭제하기 -->
+	<delete id="deleteRest_menu" parameterType="rest">
+		delete from menu where r_name=#{r_name}
+	</delete>
+	
+	<!-- 식당회원 review에서 삭제하기 -->
+	<delete id="deleteRest_review" parameterType="rest">
+		delete from review where r_name=#{r_name}
+	</delete>
+
+	<!-- 식당의 이미지 파일명 구하기 -->
+	<select id="getRestImg" parameterType="Map" resultType="String">
+		select
+		<choose>
+			<when test="r_img == 'r_img0'">
+				r_img0
+			</when>
+			<when test="r_img == 'r_img1'">
+				r_img1
+			</when>
+			<when test="r_img == 'r_img2'">
+				r_img2
+			</when>
+		</choose>
+		from rest_info where r_id=#{r_id}
+	</select>
+
+</mapper>
+
+
+
+
+
+
+
