@@ -52,7 +52,8 @@
 				<!-- Heading -->
 				<h2 class="white">Admin - Notice</h2>
 				<ol class="breadcrumb">
-					<li><a href="/TodayLunch/main.lunch">Home</a></li>
+					<li><a href="/TodayLunch/main.lunch">HOME</a></li>
+					<li><a href="myPage.lunch">MY PAGE</a></li>
 				</ol>
 				<div class="clearfix"></div>
 			</div>
@@ -78,7 +79,7 @@
 	<c:forEach var="list" items="${list}">
 		<tr>
 			<td>${list.no_num}</td>
-			<td id="content${list.no_num}"><a href="#"onclick="modify(${list.no_num})">${list.no_content}</a></td>
+			<td id="content${list.no_num}"><a style="cursor:pointer" onclick="modify(${list.no_num})">${list.no_content}</a></td>
 			<td>${list.no_time}</td>
 			<td><a href="noticeDelete.lunch?no_num=${list.no_num}">삭제</a></td>
 		</tr>

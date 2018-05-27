@@ -88,7 +88,7 @@ function inputCheck(){
 	}
 	
 	//id중복검사 미통과시 경고창
-	alert(window.document.getElementById("chkMsg").firstChild.innerHTML);
+	//alert(window.document.getElementById("chkMsg").firstChild.innerHTML);
 	if(window.document.getElementById("chkMsg").firstChild.innerHTML =='사용불가'){		
 		alert("[경고] 중복검사 미통과시 회원가입이 불가능합니다!!")
 		return;

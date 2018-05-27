@@ -109,7 +109,8 @@
 	
 <c:if test="${not empty requestScope.result}">
 <font style="margin:5px;color:#513629 ">
-<h3>${result}</h3></font>
+<h3>${result}</h3>
+<button onclick="history.back()" style="background:#E7C1BA;color:#513629;border-radius:20px;border:2px solid #ccccff;">Back</button></font>
 				</c:if>
 
 

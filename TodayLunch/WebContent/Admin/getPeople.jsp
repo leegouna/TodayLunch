@@ -59,8 +59,8 @@
 				<!-- Heading -->
 				<h2 class="white">Admin - Member</h2>
 				<ol class="breadcrumb">
-					<li><a href="index.html">Home</a></li>
-					<li class="active">Contact</li>
+					<li><a href="/TodayLunch/main.lunch">HOME</a></li>
+					<li><a href="myPage.lunch">MY PAGE</a></li>
 				</ol>
 				<div class="clearfix"></div>
 			</div>
@@ -103,30 +103,9 @@
 		pglist.put("beginPerPage", beginPerPage); -->
 
 								<br>
-								<c:if test="${pgList.count==0}">
-
+								<c:if test="${pgList eq null}">
 
 분류를 선택하여주세요
-<!-- 								<div class="col-md-3 col-sm-6">
-									
-									<div class="shopping-item">
-										
-										<a href="item-single.html"><img class="img-responsive" src="img/shopping/shop1.jpg" alt=""></a>
-										
-										<h4 class="pull-left"><a href="item-single.html">Quasi Architects</a></h4>
-										<span class="item-price pull-right">$49</span>
-										<div class="clearfix"></div>
-										
-										<p>Lorem ipsum dolor sit amet, conse ctetur adipis cicing elit.</p>
-										
-										<div class="visible-xs">
-											<a class="btn btn-danger btn-sm" href="#">Buy Now</a>
-										</div>
-										
-										<div class="item-hover br-red hidden-xs"></div>
-										<a class="link hidden-xs" href="#">Add to cart</a>
-									</div>
-								</div> -->
 
 </c:if>
 

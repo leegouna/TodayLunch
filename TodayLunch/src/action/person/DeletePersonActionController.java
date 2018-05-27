@@ -37,7 +37,7 @@ public class DeletePersonActionController{
 		int p=mdao.deletePerson(mdto); //삭제 성공 하면 1 아니면 0
 		
 		System.out.println("deletePersonAction의 p="+p);
-		 if(p==2) {
+		 if(p>0) {
 			 System.out.println("deletePersonAction p 성공?"+p);
 			 request.getSession().invalidate();
 			 return new ModelAndView("redirect:/main.lunch"); //메인으로 이동

@@ -83,22 +83,23 @@ public class SqlMapRestDao extends SqlSessionDaoSupport implements RestDAO {
 			String path = "C:/webtest/4.jsp/sou/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps"
 					+ "/TodayLunch/img/restaurant/" + rest.getR_id();
 			File file = new File(path);
-			File[] files = file.listFiles();
+			if (file.exists()) {
+				File[] files = file.listFiles();
 
-			for (int i = 0; i < files.length; i++) {
-				if (files[i].delete()) {
-					System.out.println("deleteRest " + files[i].getName() + " 삭제성공");
+				for (int i = 0; i < files.length; i++) {
+					if (files[i].delete()) {
+						System.out.println("deleteRest " + files[i].getName() + " 삭제성공");
+					} else {
+						System.out.println("deleteRest " + files[i].getName() + " 삭제실패");
+					}
+				}
+
+				if (file.delete()) {
+					System.out.println("deleteRest 디렉토리 삭제 성공");
 				} else {
-					System.out.println("deleteRest " + files[i].getName() + " 삭제실패");
+					System.out.println("deleteRest 디렉토리 삭제 실패");
 				}
 			}
-
-			if (file.delete()) {
-				System.out.println("deleteRest 디렉토리 삭제 성공");
-			} else {
-				System.out.println("deleteRest 디렉토리 삭제 실패");
-			}
-
 			int delete_info = getSqlSession().delete("deleteRest_info", rest);
 			int delete_login = getSqlSession().delete("deleteRest_login", rest);
 			delete += getSqlSession().delete("deleteRest_bookmark", rest);

@@ -271,40 +271,40 @@
 													<tr>
 														<td>아이디</td>
 														<td><input type="text" name="r_id" id="r_id2"
-															value="${r_id}"></td>
+															value="${r_id}" readonly></td>
 													</tr>
 													<tr>
 														<td>패스워드</td>
 														<td><input type="password" name="r_passwd"
-															id="r_passwd3" value="${r_passwd}"></td>
+															id="r_passwd3" value="${r_passwd}" readonly></td>
 													</tr>
 													<tr>
 														<td>이메일</td>
 														<td><input type="text" name="r_email" id="r_email2"
-															value="${r_email}"></td>
+															value="${r_email}" readonly></td>
 													</tr>
 													<tr>
 														<td>연락처</td>
 														<td><input type="text" name="r_phone" id="r_phone2"
-															value="${r_phone}"></td>
+															value="${r_phone}" readonly></td>
 													</tr>
 
 													<tr>
 														<td>식당이름</td>
 														<td><input type="text" name="r_name" id="r_name2"
-															value="${r_name}"></td>
+															value="${r_name}" readonly></td>
 													</tr>
 
 													<tr>
 														<td>식당주소</td>
 														<td><input type="text" name="r_add" id="r_add2"
-															value="${r_add}"></td>
+															value="${r_add}" readonly></td>
 													</tr>
 
 													<tr>
 														<td>식당소개</td>
 														<td><input type="text" name="r_info" id="r_info2"
-															value="${r_info}"></td>
+															value="${r_info}" readonly></td>
 													</tr>
 													<tr>
 														<td>&nbsp;</td>

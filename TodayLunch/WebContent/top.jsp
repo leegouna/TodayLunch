@@ -84,7 +84,7 @@
 												<a href="/TodayLunch/Login/login.lunch"><img src="/TodayLunch/img/nav-menu/nav5.jpg" class="img-responsive" alt=""> Login </a>
 												
 											</li>
-											<li><a href="/TodayLunch/Register/registerintro.lunch"><img src="/TodayLunch/img/nav-menu/nav6.jpg" class="img-responsive" alt=""> Register</a></li>
+											<li><a href="/TodayLunch/Register/registerintro.lunch"><img src="/TodayLunch/img/nav-menu/nav7.jpg" class="img-responsive" alt=""> Register</a></li>
 										</ul>
 									</div><!-- /.navbar-collapse -->
 									<!-- 세션값 없을경우 끝 -->
@@ -99,6 +99,7 @@
 										
 										
 											
+																						<li><a href="/TodayLunch/Rest/restList.lunch"><img src="/TodayLunch/img/nav-menu/nav3.jpg" class="img-responsive" alt=""> Shop List</a></li>
 											
 											<li><a href="/TodayLunch/Admin/myPage.lunch"><img src="/TodayLunch/img/nav-menu/nav3.jpg" class="img-responsive" alt="">
 											 AdminPage</a></li>

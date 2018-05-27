@@ -165,10 +165,17 @@
 	<script src="../js/custom.js"></script>
 	<!-- JS code for this page -->
 	<script>
-	$('#plate>h4').css('margin-top', -1*$('#plate>img').height()/2-$('#plate>h4').height()/2);
+	$(window).load(function() {
+		replaceFont();
+		})
+	
 	$(window).resize(function(){
-		$('#plate>h4').css('margin-top', -1*$('#plate>img').height()/2-$('#plate>h4').height()/2);
+		replaceFont();
 	}).resize(); 
+	
+	function replaceFont(){
+		$('#plate>h4').css('margin-top', -1*$('#plate>img').height()/2-$('#plate>h4').height()/2);
+	}
 	</script>
 </body>
 </html>

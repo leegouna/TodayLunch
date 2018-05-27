@@ -62,9 +62,10 @@
 		<div class="inner-menu">
 				<div class="container">
 					<!-- Heading -->
-						
+					
 					
 						<div class="row">
+							
 							<c:forEach var="i" items="${list}" begin="0">
 								<div class="col-md-4 col-sm-6">
 									<!-- Inner page menu list -->
@@ -120,7 +121,7 @@
 											</div>
 										</c:if>
 										<!--충전 아니면-->
-										<c:if test="${i.r_name!='admin'}">
+										<%-- <c:if test="${i.r_name!='admin'}">
 											<!-- Menu list items -->
 											<div class="menu-list-item">
 												<!-- Heading / Dish name -->
@@ -129,12 +130,14 @@
 												<span class="price pull-right">${i.r_name}</span>
 												<div class="clearfix"></div>
 											</div>
-										</c:if>
+										</c:if> --%>
 									</div>
 								</div>
 							</c:forEach>
+							
 
 						</div>
+						<br>
 						<div class="row text-center">
 							${pgList}
 						</div>

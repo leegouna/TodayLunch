@@ -150,7 +150,7 @@
 <script>
 function forget(){
 	
-	window.open("forget_Info.jsp", "post", "left=400,top=220, width=300, height=250",
+	window.open("forget_Info.jsp", "post", "left=400,top=220, width=300, height=300",
 			"toobar=no,menubar=no,status=yes,scrollbars=no");
 	}
 </script>

@@ -177,27 +177,27 @@
 													<tr>
 														<td>아이디</td>
 														<td><input type="text" name="p_id" id="p_id2"
-															value="${p_id}"></td>
+															value="${p_id}" readonly></td>
 													</tr>
 													<tr>
 														<td>패스워드</td>
 														<td><input type="password" name="p_passwd"
-															id="p_passwd3" value="${p_passwd}"></td>
+															id="p_passwd3" value="${p_passwd}" readonly></td>
 													</tr>
 													<tr>
 														<td>이름</td>
 														<td><input type="text" name="p_name" id="p_name2"
-															value="${p_name}"></td>
+															value="${p_name}" readonly></td>
 													</tr>
 													<tr>
 														<td>이메일</td>
 														<td><input type="text" name="p_email" id="p_email2"
-															value="${p_email}"></td>
+															value="${p_email}" readonly></td>
 													</tr>
 													<tr>
 														<td>식권 인증번호</td>
 														<td><input type="text" name="p_siknum" id="p_siknum2"
-															value="${p_siknum}"></td>
+															value="${p_siknum}" readonly></td>
 													</tr>
 													<tr>
 														<td>&nbsp;</td>
@@ -380,7 +380,7 @@
 				 data:{'p_id':p_id},
 				 success:function(data){
 					 var check=$(data).find('#idcheck').val();
-					 alert(check);
+					 //alert(check);
 					 if(check=="true"){
 						 $('#chkMsg').html("<p style='COLOR:red'>사용불가</p>");       
 			            }else{
